@@ -35,7 +35,6 @@ async def process_days_command(message: Message):
                               f'{schedule.schedule()[today]}')
 
 
-# Реализация таймдельты !!!!
 @user_router.message(F.text == 'Завтра')
 async def process_days_command(message: Message):
     t_delta = datetime.timedelta(days=1)
@@ -46,7 +45,6 @@ async def process_days_command(message: Message):
                               f'{schedule.schedule()[today]}')
 
 
-# Реализация таймдельты !!!!
 @user_router.message(Command(commands='remind'))
 async def process_remind_command(message: Message, scheduler: AsyncIOScheduler, bot: Bot):
     t_delta = datetime.timedelta(days=1)

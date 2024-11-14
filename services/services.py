@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
+# класс для работы каленларем, словарем, расписанием
 class Schedule:
     def __init__(self, fr, to, lst_schedule):
         self.fr = fr # От какого числа расписание на неделю
