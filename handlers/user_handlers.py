@@ -55,7 +55,7 @@ async def process_remind_command(message: Message, scheduler: AsyncIOScheduler, 
     await message.answer(text='Напоминания включены!')
     scheduler.add_job(bot.send_message, 'cron', hour=21,
                       args=(message.chat.id,
-                            f'<b>Расписание на завтра:</b>\n\n {schedule.schedule()[f'{t_day}.{month}']}'))
+                            f'<b>Расписание на завтра:</b>{schedule.schedule()[f'{t_day}.{month}']}'))
 
 
 @user_router.message(F.text == 'Расписание на неделю')
@@ -65,7 +65,7 @@ async def process_schedule_for_week(message: Message):
 
 @user_router.message(F.text == 'Раписание игр')
 async def process_games_schedule(message: Message):
-    await message.answer(parse_sptbx())
+    await message.answer(LEXICON_RU['schedule_games'])
 
 
 @user_router.callback_query(F.data)
@@ -73,4 +73,5 @@ async def process_days_inline_callback(callback: CallbackQuery):
     await callback.message.edit_text(
         text=f'<b>Расписание на {callback.data}</b>:\n{schedule.schedule()[callback.data]}'
     )
+    await callback.answer()
 

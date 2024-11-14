@@ -14,7 +14,10 @@ class Schedule:
         cal: dict[str, str] = {}
         now_month = datetime.datetime.now().month
         for day, dsc in zip(range(self.fr, self.to + 1), self._lst_schedule):
-            cal.update({f'{day}.{now_month}': dsc})
+            if day < 10:
+                cal.update({f'0{day}.{now_month}': dsc})
+            else:
+                cal.update({f'{day}.{now_month}': dsc})
         return cal
 
     # Поллучаем строку для вывода расписания на неделю
